@@ -4,15 +4,10 @@ let client: GoogleGenAI | null = null;
 
 // Initialize the client if API key is available
 try {
-  //if (process.env.API_KEY) {
-    //client = new GoogleGenAI({ apiKey: process.env.API_KEY });
-  //} else {
-    //console.warn("API_KEY not found in environment variables. AI features //will use fallback mock.");
-// Vite 使用 import.meta.env 读取环境变量
-const apiKey = import.meta.env.VITE_API_KEY; 
-if (apiKey) {
-  client = new GoogleGenAI({ apiKey: apiKey });
-}
+  if (process.env.API_KEY) {
+    client = new GoogleGenAI({ apiKey: process.env.API_KEY });
+  } else {
+    console.warn("API_KEY not found in environment variables. AI features will use fallback mock.");
   }
 } catch (error) {
   console.error("Failed to initialize GoogleGenAI", error);
